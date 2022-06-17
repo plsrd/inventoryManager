@@ -83,3 +83,32 @@ exports.category_create_post = [
     });
   },
 ];
+
+exports.category_delete_get = (req, res, next) => {
+  async.parallel(
+    {
+      category: callback =>
+        Category.find({ _id: req.params.id }).exec(callback),
+      category_items: callback =>
+        Item.find({ category: req.params.id }).exec(callback),
+    },
+    (err, { category, category_items }) => {
+      if (err) return next(err);
+
+      if (!category) res.redirect('/inventory/categories');
+
+      res.render('category_delete', {
+        title: `Delete ${category.name}`,
+        category,
+        category_items,
+      });
+    }
+  );
+};
+
+exports.category_delete_post = (req, res, next) => {
+  Category.findByIdAndRemove(req.params.id, err => {
+    if (err) next(err);
+    res.redirect('/inventory/categories');
+  });
+};
