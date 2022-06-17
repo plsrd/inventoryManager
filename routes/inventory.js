@@ -18,6 +18,10 @@ router.get('/item/:id', itemController.item_detail);
 //category routes
 router.get('/categories', categoryController.category_list);
 
+router.get('/category/create', categoryController.category_create_get);
+
+router.post('/category/create', categoryController.category_create_post);
+
 router.get('/category/:id', categoryController.category_detail);
 
 module.exports = router;
