@@ -2040,3 +2040,6 @@ body[dir="rtl"] .checkbox:checked,
 .inline {
   display: inline;
 }
+.hidden {
+  display: none;
+}

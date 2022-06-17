@@ -3,3 +3,5 @@ extends layout
 block content 
   h1= item.name
   p #[strong SKU: ] #{item._id}
+
+  a(href=`/inventory/item/${item._id}/delete`) Delete Item

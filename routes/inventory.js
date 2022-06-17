@@ -13,6 +13,10 @@ router.get('/item/create', itemController.item_create_get);
 
 router.post('/item/create', itemController.item_create_post);
 
+router.get('/item/:id/delete', itemController.item_delete_get);
+
+router.post('/item/:id/delete', itemController.item_delete_post);
+
 router.get('/item/:id', itemController.item_detail);
 
 //category routes
