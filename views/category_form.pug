@@ -6,8 +6,8 @@ block content
   form(action="", method="post" style='display:flex;flex-direction:column') 
     label(for="name") Category name: 
     input(type="text", name="name" placeholder='Name' value=(category && category.name ? category.name : '')) 
-    label(for="description") Item description: 
-    textarea(type='textarea' name="description" placeholder='A nice sentence')  #{item && item.description ? item.description : ''}
+    label(for="description") Category description: 
+    textarea(type='textarea' name="description" placeholder='A nice sentence')  #{category && category.description ? category.description : ''}
     button(type="submit") Submit
 
   if errors   

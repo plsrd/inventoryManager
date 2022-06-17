@@ -113,6 +113,12 @@ exports.category_delete_post = (req, res, next) => {
   });
 };
 
-exports.category_update_get = (req, res, err) => {};
+exports.category_update_get = (req, res, err) => {
+  Category.findById(req.params.id).exec((err, category) => {
+    if (err) return next(err);
 
-exports.category_update_post = (req, res, err) => {};
+    res.render('category_form', { title: 'Update Category', category });
+  });
+};
+
+exports.category_update_post = this.category_create_post;

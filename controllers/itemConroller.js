@@ -188,6 +188,7 @@ exports.item_update_post = [
       category,
       price,
       in_stock,
+      _id: req.params.id,
     });
 
     if (!errors.isEmpty()) {
@@ -208,10 +209,9 @@ exports.item_update_post = [
         });
       });
     } else {
-      item.save(err => {
+      Item.findByIdAndUpdate(req.params.id, item, {}, (err, updatedItem) => {
         if (err) return next(err);
-
-        res.redirect(item.url);
+        res.redirect(updatedItem.url);
       });
     }
   },
