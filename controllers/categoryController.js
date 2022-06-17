@@ -112,3 +112,7 @@ exports.category_delete_post = (req, res, next) => {
     res.redirect('/inventory/categories');
   });
 };
+
+exports.category_update_get = (req, res, err) => {};
+
+exports.category_update_post = (req, res, err) => {};

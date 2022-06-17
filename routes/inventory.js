@@ -17,6 +17,10 @@ router.get('/item/:id/delete', itemController.item_delete_get);
 
 router.post('/item/:id/delete', itemController.item_delete_post);
 
+router.get('/item/:id/update', itemController.item_update_get);
+
+router.post('/item/:id/update', itemController.item_update_post);
+
 router.get('/item/:id', itemController.item_detail);
 
 //category routes
@@ -29,6 +33,10 @@ router.post('/category/create', categoryController.category_create_post);
 router.get('/category/:id/delete', categoryController.category_delete_get);
 
 router.post('/category/:id/delete', categoryController.category_delete_post);
+
+router.get('/category/:id/update', categoryController.category_update_get);
+
+router.post('/category/:id/update', categoryController.category_update_post);
 
 router.get('/category/:id', categoryController.category_detail);
 
