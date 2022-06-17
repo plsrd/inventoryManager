@@ -20,3 +20,23 @@ exports.index = (req, res, next) => {
     }
   );
 };
+
+exports.item_list = (req, res, next) => {
+  Item.find({})
+    .populate('category')
+    .exec((err, item_list) => {
+      if (err) return next(err);
+
+      res.render('item_list', { title: 'All items', item_list });
+    });
+};
+
+exports.item_detail = (req, res, next) => {
+  Item.findById(req.params.id)
+    .populate('category')
+    .exec((err, item) => {
+      if (err) return next(err);
+
+      res.render('item_detail', { title: `Item Detail: ${item.name}`, item });
+    });
+};

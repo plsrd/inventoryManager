@@ -1,0 +1,15 @@
+extends layout
+
+block content 
+  h1= title 
+
+  ul 
+    each category in categories 
+
+      li 
+        a(href=category.url) #{category.name}
+        p #{category.description}
+        
+    
+    else 
+      li there are no items
