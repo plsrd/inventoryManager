@@ -52,7 +52,7 @@ exports.item_create_get = (req, res, next) => {
   Category.find().exec((err, categories) => {
     if (err) return next(err);
 
-    res.render('item_form', { title: 'Create Item', categories });
+    res.render('item_form', { title: 'Create Item', categories, errors: [] });
   });
 };
 
@@ -152,6 +152,7 @@ exports.item_update_get = (req, res, err) => {
         title: 'Update Item',
         item,
         categories,
+        errors: [],
       });
     }
   );

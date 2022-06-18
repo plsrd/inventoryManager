@@ -6,9 +6,13 @@ block content
       div(class='card-body')
         h2(class='card-title')= title 
         label(for="name" class='label') Item name: 
-        input(type="text", class="input input-bordered input-primary w-full max-w-xs" name="name" placeholder='Name' value=(item && item.name ? item.name : '')) 
+        if errors.some(error => error.param == 'name')
+          span(class='label-text text-error') #{errors.find(error => error.param == 'name').msg}
+        input(type="text", class=`input input-bordered w-full max-w-xs ${errors.some(error => error.param == 'name') ? 'input-error': 'input-primary'}` name="name" placeholder='Name' value=(item && item.name ? item.name : '')) 
         label(for="description" class='label') Item description: 
-        textarea(type='textarea' name="description" placeholder='A nice sentence' class="textarea textarea-primary")  #{item && item.description ? item.description : ''}
+        if errors.some(error => error.param == 'description')
+          span(class='label-text text-error') #{errors.find(error => error.param == 'description').msg}
+        textarea(type='textarea' name="description" placeholder='A nice sentence' class=`textarea ${errors.some(error => error.param == 'description') ? 'textarea-error': 'textarea-primary'}`)  #{item && item.description ? item.description : ''}
 
         label(class='label cursor-pointer') Category:
         div(class='flex flex-col')
@@ -17,12 +21,11 @@ block content
               input(type='checkbox', class="checkbox checkbox-primary" me='category' id=category._id value=category._id checked=category.checked )
               span(class='label-text ml-5') #{category.name}
         label(for="price") Price:
-        input(type="number" class='input input-bordered input-primary' name="price" value=(item && item.price ? item.price : ''))
+        if errors.some(error => error.param == 'price')
+          span(class='label-text text-error') #{errors.find(error => error.param == 'price').msg}
+          input(type="number" class=`input input-bordered ${errors.some(error => error.param == 'price') ? 'input-error': 'input-primary'}` name="price" value=(item && item.price ? item.price : ''))
         label(for="in_stock") Number in stock :
-        input(type="number" class='input input-bordered input-primary' name="in_stock" value=(item && item.in_stock ? item.in_stock : ''))
+        if errors.some(error => error.param == 'in_stock')
+          span(class='label-text text-error') #{errors.find(error => error.param == 'in_stock').msg}
+          input(type="number" class=`input input-bordered ${errors.some(error => error.param == 'in_stock') ? 'input-error': 'input-primary'}` name="in_stock" value=(item && item.in_stock ? item.in_stock : ''))
         button(type="submit" class='btn btn-outline btn-success mt-5') Submit
-
-  if errors   
-    ul 
-      for error in errors 
-        li!= error.msg
