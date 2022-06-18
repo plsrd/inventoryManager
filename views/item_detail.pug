@@ -9,6 +9,6 @@ block content
           p #[strong Price: ] $#{item.price.toFixed(2)} 
           p #[strong In stock: ] #{item.in_stock}
         div(class="card-actions justify-end")
-          a(class="btn btn-primary" href=`/inventory/item/${item._id}/update`) Update
-          a(class="btn btn-error" href=`/inventory/item/${item._id}/delete`) Delete
+          a(class="btn btn-outline btn-warning" href=`/inventory/item/${item._id}/update`) Update
+          a(class="btn btn-outline btn-error" href=`/inventory/item/${item._id}/delete`) Delete
   
