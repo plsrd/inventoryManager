@@ -121,4 +121,49 @@ exports.category_update_get = (req, res, err) => {
   });
 };
 
-exports.category_update_post = this.category_create_post;
+exports.category_update_post = [
+  body('name', 'Name is required')
+    .trim()
+    .isLength({ min: 3 })
+    .withMessage('Name must be at least 3 characters')
+    .escape(),
+  body('description')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('Description is required.'),
+  (req, res, next) => {
+    Category.find().exec((err, category_names) => {
+      if (err) return next(err);
+
+      const errors = validationResult(req);
+
+      const { name, description } = req.body;
+
+      let category = new Category({
+        name,
+        description,
+        _id: req.params.id,
+      });
+
+      if (!errors.isEmpty()) {
+        res.render('category_form', {
+          title: 'Create Category',
+          category,
+          errors: errors.array(),
+        });
+      } else {
+        Category.findByIdAndUpdate(
+          req.params.id,
+          category,
+          {},
+          (err, updatedCategory) => {
+            if (err) return next(err);
+
+            res.redirect(updatedCategory.url);
+          }
+        );
+      }
+    });
+  },
+];
