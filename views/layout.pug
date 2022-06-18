@@ -4,29 +4,31 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    div(class="navbar bg-base-100")
-      div(class="flex-none")
-        div(class="dropdown")
-          label(tabindex="0" class="btn btn-ghost btn-circle")
-            svg(xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor")
-              path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7")
-          ul(tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52")
-            li 
-              a(href='/inventory/items') All Items
-            li 
-              a(href='/inventory/categories') All Categories
-            hr
-            li  
-              a(href='/inventory/item/create') Create Item
-            li  
-              a(href='/inventory/category/create') Create Category
-      div(class='flex-1')
-        a(class="btn btn-ghost normal-case text-xl" href='/') Penn Island Fine Goods
-      div(class="navbar-end")
-        div(class="indicator")
-          button(class="btn btn-ghost btn-circle")
-            svg(xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor")
-              path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z")
+    script 0
+    div(class='flex flex-col h-screen')
+      div(class="navbar bg-white")
+        div(class="flex-none")
+          div(class="dropdown")
+            label(tabindex="0" class="btn btn-ghost btn-circle")
+              svg(xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7")
+            ul(tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52")
+              li 
+                a(href='/inventory/items') All Items
+              li 
+                a(href='/inventory/categories') All Categories
+              hr
+              li  
+                a(href='/inventory/item/create') Create Item
+              li  
+                a(href='/inventory/category/create') Create Category
+        div(class='flex-1')
+          a(class="btn btn-ghost normal-case text-xl" href='/') Inventory Manager
+        div(class="navbar-end")
+          div(class="indicator")
+            button(class="btn btn-ghost btn-circle")
+              svg(xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z")
 
-    div(style='display:flex;flex-direction:column')
-      block content
+      div(class='bg-base-100 h-full')
+        block content
