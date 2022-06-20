@@ -1,15 +1,19 @@
 extends layout
 
 block content 
-  h1= title 
-
-  ul 
+  div(class='grid grid-cols-3 h-full mx-auto my-10 w-5/6 gap-y-3')
     each category in categories 
+      div(class="card w-96 h-96 bg-white shadow-xl mx-auto")
+        div(class="card-body") 
+          a(class="card-title" href=category.url) #{category.name}
 
-      li 
-        a(href=category.url) #{category.name}
-        p #{category.description}
-        
-    
+          a(class='text-sm flex-0') #[strong Category ID: ] #{category._id}
+          p #{category.description}
+          div(class="card-actions")
+            div(class='flex flex-row w-full items-center')
+              a(class='h-full flex-0 btn btn-ghost btn-circle p-0 m-0' href=category.url)
+                svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current")
+                  path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z")
+              
     else 
       li there are no items
