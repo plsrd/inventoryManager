@@ -1,18 +1,23 @@
 extends layout 
 
 block content 
-  h1= category.name 
+  div(class="card w-96 bg-white shadow-xl mx-auto mt-10")
+    div(class="card-body")
+    
+      h2(class="card-title")= category.name
+      p(class='mb-3') #[strong SKU: ] #{category._id}
+      p= category.description
 
-  p= category.description
+      p(class='text-md font-bold mt-5') Items:
+      div(class='flex flex-col pl-5 mb-10')
+        for item in category_items
+          div(class='my-1')
+            a(href=item.url class='font-semibold') #{item.name}
+            p(class='text-xs') #[strong SKU: ] #{item._id}
 
-  ul 
-    each item in category_items 
-      li  
-        a(href=item.url) #{item.name}
-        p #[strong SKU: ] #{item._id}
+        else 
+          p No items in this category
 
-    else 
-      li there are no items
-
-  a(href=`/inventory/category/${category._id}/update`) Update Category
-  a(href=`/inventory/category/${category._id}/delete`) Delete Category
+      div(class="card-actions justify-end")
+        a(class="btn btn-outline btn-warning" href=`/inventory/category/${category._id}/update`) Update
+        a(class="btn btn-outline btn-error" href=`/inventory/category/${category._id}/delete`) Delete
