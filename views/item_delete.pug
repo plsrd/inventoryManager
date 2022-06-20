@@ -1,13 +1,18 @@
 extends layout 
 
 block content 
-  h1= item.name
+  div(class="card w-96 h-72 bg-white shadow-xl mx-auto my-10")
 
-  p Do you really want to delete this item?
+    div(class="card-body")
+      h2(class="card-title") Delete #{item.name}?
 
-    form(method='POST' action='')
-      div
-        input(type='hidden', name='itemid', required='true', value=item._id)
+      p Do you really want to delete this item?
 
-      button(type='submit') Delete
+      div(class="card-actions justify-end")
+        form(method='POST' action='')
+          input(type='hidden' name='itemid' required='true' value=item._id)
+          button(type='submit' class="btn btn-outline btn-primary btn-error") Delete
+
+
+   
   

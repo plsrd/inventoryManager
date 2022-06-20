@@ -6,8 +6,10 @@ html
   body
     script 0
     div(class='flex flex-col h-screen')
+
       div(class="navbar bg-white")
         div(class="flex-none")
+
           div(class="dropdown")
             label(tabindex="0" class="btn btn-ghost btn-circle")
               svg(xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor")
@@ -22,8 +24,10 @@ html
                 a(href='/inventory/item/create') Create Item
               li  
                 a(href='/inventory/category/create') Create Category
+
         div(class='flex-1')
           a(class="btn btn-ghost normal-case text-xl" href='/') Inventory Manager
+          
         div(class="navbar-end")
           div(class="indicator")
             button(class="btn btn-ghost btn-circle")
