@@ -2,16 +2,19 @@ extends layout
 
 block content 
   div(class='card w-96 bg-white shadow-xl mx-auto my-10')
+
     form(action="", method="post" class="form-control w-full") 
       div(class='card-body')
+
         h2(class='card-title')= title 
+
         label(for="name" class='label') Item name: 
 
         if errors.some(error => error.param == 'name')
           span(class='label-text text-error') #{errors.find(error => error.param == 'name').msg}
 
         input(type="text", class=`input input-bordered w-full max-w-xs ${errors.some(error => error.param == 'name') ? 'input-error': 'input-primary'}` name="name" placeholder='Name' value=(item && item.name ? item.name : '')) 
-        
+
         label(for="description" class='label') Item description: 
 
         if errors.some(error => error.param == 'description')
@@ -23,7 +26,7 @@ block content
         div(class='flex flex-col')
           for category in categories
             label(for=category._id class="label cursor-pointer justify-start") 
-              input(type='checkbox', class="checkbox checkbox-primary" me='category' id=category._id value=category._id checked=category.checked )
+              input(type='checkbox', class="checkbox checkbox-primary" name='category' id=category._id value=category._id checked=category.checked )
               span(class='label-text ml-5') #{category.name}
         label(for="price") Price:
 

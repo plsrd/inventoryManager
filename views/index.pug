@@ -1,16 +1,22 @@
 extends layout
 
 block content
+
   div(class='grid grid-cols-2 h-full w-3/5  mx-auto my-10 align-center')
-    div(class="card w-96 h-1/2 bg-white shadow-xl mx-auto")
+    div(class="card w-96 h-72 bg-white shadow-xl mx-auto")
       div(class="card-body")
+
         h2(class="card-title") Items
         p Total items: #{totalItems}
+
         div(class="card-actions justify-end")
           a(class="btn btn-outline btn-primary" href='/inventory/items') Manage
-    div(class="card w-96 h-1/2 bg-white shadow-xl mx-auto")
+
+    div(class="card w-96 h-72 bg-white shadow-xl mx-auto")
       div(class="card-body")
+
         h2(class="card-title") Categories
         p Total categories: #{totalCategories}
+
         div(class="card-actions justify-end")
           a(class="btn btn-outline btn-primary" href='/inventory/categories') Manage

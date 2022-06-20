@@ -2056,6 +2056,9 @@ body[dir="rtl"] .checkbox:checked,
 .h-5 {
   height: 1.25rem;
 }
+.h-72 {
+  height: 18rem;
+}
 .h-1\/2 {
   height: 50%;
 }
