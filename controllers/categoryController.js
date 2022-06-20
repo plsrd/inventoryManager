@@ -87,8 +87,7 @@ exports.category_create_post = [
 exports.category_delete_get = (req, res, next) => {
   async.parallel(
     {
-      category: callback =>
-        Category.find({ _id: req.params.id }).exec(callback),
+      category: callback => Category.findById(req.params.id).exec(callback),
       category_items: callback =>
         Item.find({ category: req.params.id }).exec(callback),
     },

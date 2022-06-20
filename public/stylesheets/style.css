@@ -2012,13 +2012,13 @@ body[dir="rtl"] .checkbox:checked,
   margin-left: auto;
   margin-right: auto;
 }
-.my-1 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-}
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
+}
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 .my-auto {
   margin-top: auto;
@@ -2143,6 +2143,9 @@ body[dir="rtl"] .checkbox:checked,
 .stroke-current {
   stroke: currentColor;
 }
+.p-10 {
+  padding: 2.5rem;
+}
 .p-0 {
   padding: 0px;
 }
@@ -2168,11 +2171,11 @@ body[dir="rtl"] .checkbox:checked,
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-.font-bold {
-  font-weight: 700;
-}
 .font-semibold {
   font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
 }
 .normal-case {
   text-transform: none;

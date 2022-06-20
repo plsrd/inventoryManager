@@ -1,20 +1,21 @@
 extends layout 
 
 block content 
-  h1= category.name
+  div(class="card w-96 bg-white shadow-xl mx-auto my-10")
+    div(class="card-body p-10")
+      if category_items.length 
+        h2(class="card-title") Remove category from the following items before deleting: 
+        for item in category_items
+          div(class='my-1')
+            a(href=item.url class='font-semibold') #{item.name}
+            p(class='text-xs') #[strong SKU: ] #{item._id}
 
-  if category_items.length 
-    p Remove category from the following items before deleting: 
-    ul 
-      for item in category_items 
-        li 
-          a(href=item.url) #{item.name}
-          | - #{item._id}
+      else
+        h2(class="card-title") Delete #{category.name}?
 
-  else
-    p Do you really want to delete this category?
-    form(method='POST' action='')
-      div
-        input(type='hidden', name='categoryid', required='true', value=category._id)
+        p Do you really want to delete this category?
 
-      button(type='submit') Delete
+        div(class="card-actions justify-end")
+          form(method='POST' action='')
+            input(type='hidden' name='categoryid' required='true' value=category._id)
+            button(type='submit' class="btn btn-outline btn-primary btn-error") Delete
