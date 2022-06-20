@@ -1,16 +1,25 @@
 extends layout 
 
 block content
-  h1= title 
+  div(class='card w-96 bg-white shadow-xl mx-auto my-10')
 
-  form(action="", method="post" style='display:flex;flex-direction:column') 
-    label(for="name") Category name: 
-    input(type="text", name="name" placeholder='Name' value=(category && category.name ? category.name : '')) 
-    label(for="description") Category description: 
-    textarea(type='textarea' name="description" placeholder='A nice sentence')  #{category && category.description ? category.description : ''}
-    button(type="submit") Submit
+    form(action="", method="post" class="form-control w-full") 
+      div(class='card-body')
 
-  if errors   
-    ul 
-      for error in errors 
-        li!= error.msg
+        h2(class='card-title')= title 
+
+        label(for="name" class='label') Category name: 
+
+        if errors.some(error => error.param == 'name')
+          span(class='label-text text-error') #{errors.find(error => error.param == 'name').msg}
+
+        input(type="text", class=`input input-bordered w-full max-w-xs ${errors.some(error => error.param == 'name') ? 'input-error': 'input-primary'}` name="name" placeholder='Name' value=(category && category.name ? category.name : '')) 
+
+        label(for="description" class='label') Category description: 
+
+        if errors.some(error => error.param == 'description')
+          span(class='label-text text-error') #{errors.find(error => error.param == 'description').msg}
+
+        textarea(type='textarea' name="description" placeholder='A nice sentence' class=`textarea ${errors.some(error => error.param == 'description') ? 'textarea-error': 'textarea-primary'}`)  #{category && category.description ? category.description : ''}
+
+        button(type="submit" class='btn btn-outline btn-success mt-5') Submit

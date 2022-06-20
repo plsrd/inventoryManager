@@ -32,7 +32,7 @@ exports.category_detail = (req, res, next) => {
 };
 
 exports.category_create_get = (req, res, next) => {
-  res.render('category_form', { title: 'Create Category' });
+  res.render('category_form', { title: 'Create Category', errors: [] });
 };
 
 exports.category_create_post = [
@@ -117,7 +117,11 @@ exports.category_update_get = (req, res, err) => {
   Category.findById(req.params.id).exec((err, category) => {
     if (err) return next(err);
 
-    res.render('category_form', { title: 'Update Category', category });
+    res.render('category_form', {
+      title: 'Update Category',
+      category,
+      errors: [],
+    });
   });
 };
 
