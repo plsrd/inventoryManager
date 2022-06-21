@@ -81,8 +81,6 @@ exports.item_create_post = [
 
     const { name, description, category, price, in_stock } = req.body;
 
-    console.log(req.file);
-
     let item = new Item({
       name,
       description,

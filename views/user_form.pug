@@ -1,0 +1,25 @@
+extends layout 
+
+block content
+  div(class='card w-96 bg-white shadow-xl mx-auto my-10')
+
+    form(action="", method="post" class="form-control w-full") 
+      div(class='card-body')
+
+        h2(class='card-title')= title 
+
+        label(for="name" class='label') Username: 
+
+        if errors.some(error => error.param == 'name')
+          span(class='label-text text-error') #{errors.find(error => error.param == 'name').msg}
+
+        input(type="text", class=`input input-bordered w-full max-w-xs ${errors.some(error => error.param == 'name') ? 'input-error': 'input-primary'}` name="name" placeholder='Name' value=(user && user.name ? user.name : '')) 
+
+        label(for="description" class='label') Password: 
+
+        if errors.some(error => error.param == 'description')
+          span(class='label-text text-error') #{errors.find(error => error.param == 'description').msg}
+
+        input(type='password' name="password" class=`input ${errors.some(error => error.param == 'password') ? 'input-error': 'input-primary'}` value=user && user.password ? user.password : '' placeholder='Password') 
+
+        button(type="submit" class='btn btn-outline btn-success mt-5') Submit
