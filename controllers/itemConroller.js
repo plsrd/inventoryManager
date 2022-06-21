@@ -81,12 +81,15 @@ exports.item_create_post = [
 
     const { name, description, category, price, in_stock } = req.body;
 
+    console.log(req.file);
+
     let item = new Item({
       name,
       description,
       category,
       price,
       in_stock,
+      image: req.file.filename,
     });
 
     if (!errors.isEmpty()) {
@@ -148,6 +151,8 @@ exports.item_update_get = (req, res, err) => {
           : category
       );
 
+      console.log(item);
+
       res.render('item_form', {
         title: 'Update Item',
         item,
@@ -189,6 +194,7 @@ exports.item_update_post = [
       category,
       price,
       in_stock,
+      image: req.file ? req.file.filename : null,
       _id: req.params.id,
     });
 

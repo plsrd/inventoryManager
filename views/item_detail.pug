@@ -1,9 +1,12 @@
 extends layout 
 
 block content 
-  div(class="card w-96 h-1/2 bg-white shadow-xl mx-auto mt-10")
+  div(class="card w-96 h-72 bg-white shadow-xl mx-auto mt-10")
       div(class="card-body")
-      
+        if item.image
+          figure
+            img(src=`/images/${item.image}`)
+
         h2(class="card-title")= item.name
         p= item.description
         div(class='py-1 h-full flex-row justify-end flex-wrap-reverse ')
@@ -17,4 +20,5 @@ block content
         div(class="card-actions justify-end")
           a(class="btn btn-outline btn-warning" href=`/inventory/item/${item._id}/update`) Update
           a(class="btn btn-outline btn-error" href=`/inventory/item/${item._id}/delete`) Delete
+
   
