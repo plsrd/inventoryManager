@@ -28,7 +28,7 @@ router.get('/item/create', itemController.item_create_get);
 
 router.post(
   '/item/create',
-  upload.single('image'),
+  upload.single('newImage'),
   itemController.item_create_post
 );
 
