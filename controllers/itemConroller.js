@@ -44,6 +44,14 @@ exports.search_results = (req, res, next) => {
               },
             },
           },
+          {
+            $lookup: {
+              from: 'categories',
+              localField: 'category',
+              foreignField: '_id',
+              as: 'category',
+            },
+          },
         ]).exec(callback),
       categories: callback =>
         Category.aggregate([
@@ -65,8 +73,9 @@ exports.search_results = (req, res, next) => {
     },
     (err, { items, categories }) => {
       if (err) return next(err);
-      console.log(items, categories);
-      res.render('search_results', { title: 'Search' });
+      const results = [...items, ...categories];
+      console.log(results);
+      res.render('search_results', { title: 'Search', results });
     }
   );
 };
