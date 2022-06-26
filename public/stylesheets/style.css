@@ -901,14 +901,6 @@ html {
   -webkit-text-decoration-line: underline;
   text-decoration-line: underline;
 }
-.mask {
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
 .menu {
   display: flex;
   flex-direction: column;
@@ -1683,10 +1675,6 @@ body[dir="rtl"] .checkbox:checked,
 .link:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
-}
-.mask-squircle {
-  -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCiAgPHBhdGggZD0iTSAxMDAgMCBDIDIwIDAgMCAyMCAwIDEwMCBDIDAgMTgwIDIwIDIwMCAxMDAgMjAwIEMgMTgwIDIwMCAyMDAgMTgwIDIwMCAxMDAgQyAyMDAgMjAgMTgwIDAgMTAwIDAgWiIvPgoKPC9zdmc+);
-  mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCiAgPHBhdGggZD0iTSAxMDAgMCBDIDIwIDAgMCAyMCAwIDEwMCBDIDAgMTgwIDIwIDIwMCAxMDAgMjAwIEMgMTgwIDIwMCAyMDAgMTgwIDIwMCAxMDAgQyAyMDAgMjAgMTgwIDAgMTAwIDAgWiIvPgoKPC9zdmc+);
 }
 .menu.horizontal li.bordered > a, 
         .menu.horizontal li.bordered > button, 

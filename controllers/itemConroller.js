@@ -186,43 +186,50 @@ exports.item_update_post = [
     .withMessage('Description is required.'),
   body('price', 'Price is required').isFloat({ min: 0 }),
   body('in_stock', 'Number in stock is required').isInt({ min: 0 }),
+
   (req, res, next) => {
-    const errors = validationResult(req);
+    Item.findById(req.params.id).exec((err, oldItem) => {
+      const errors = validationResult(req);
 
-    const { name, description, category, price, in_stock } = req.body;
+      const { name, description, category, price, in_stock } = req.body;
 
-    let item = new Item({
-      name,
-      description,
-      category,
-      price,
-      in_stock,
-      image: req.file ? req.file.filename : null,
-      _id: req.params.id,
-    });
+      let item = new Item({
+        name,
+        description,
+        category,
+        price,
+        in_stock,
+        image: req.file
+          ? req.file.filename
+          : oldItem.image
+          ? oldItem.image
+          : null,
+        _id: req.params.id,
+      });
 
-    if (!errors.isEmpty()) {
-      Category.find().exec((err, categories) => {
-        if (err) return next(err);
+      if (!errors.isEmpty()) {
+        Category.find().exec((err, categories) => {
+          if (err) return next(err);
 
-        categories = categories.map(category =>
-          item.category.indexOf(category._id) > -1
-            ? Object.assign(category, { checked: true })
-            : category
-        );
+          categories = categories.map(category =>
+            item.category.indexOf(category._id) > -1
+              ? Object.assign(category, { checked: true })
+              : category
+          );
 
-        res.render('item_form', {
-          title: 'Update Item',
-          item,
-          categories,
-          errors: errors.array(),
+          res.render('item_form', {
+            title: 'Update Item',
+            item,
+            categories,
+            errors: errors.array(),
+          });
         });
-      });
-    } else {
-      Item.findByIdAndUpdate(req.params.id, item, {}, (err, updatedItem) => {
-        if (err) return next(err);
-        res.redirect(updatedItem.url);
-      });
-    }
+      } else {
+        Item.findByIdAndUpdate(req.params.id, item, {}, (err, updatedItem) => {
+          if (err) return next(err);
+          res.redirect(updatedItem.url);
+        });
+      }
+    });
   },
 ];

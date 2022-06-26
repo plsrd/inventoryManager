@@ -38,7 +38,7 @@ router.get('/item/:id/update', itemController.item_update_get);
 
 router.post(
   '/item/:id/update',
-  upload.single('image'),
+  upload.single('newImage'),
   itemController.item_update_post
 );
 
