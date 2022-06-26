@@ -36,7 +36,7 @@ block content
                 div(class='py-1 h-full flex-1 flex justify-end flex-wrap-reverse ')
                   if result.category
                     for category in result.category 
-                      a(class="badge badge-info m-1" href=category.url) #{category.name}
+                      a(class="badge badge-info m-1" href=`/inventory/category/${category._id}`) #{category.name}
   else 
     div(class="alert alert-warning shadow-lg w-11/12 mx-auto mt-10")
       div(class='flex justify-between w-full')
