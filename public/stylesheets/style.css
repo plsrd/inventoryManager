@@ -2215,6 +2215,9 @@ body[dir="rtl"] .checkbox:checked,
   margin-right: calc(-0.75rem * var(--tw-space-x-reverse));
   margin-left: calc(-0.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.rounded-full {
+  border-radius: 9999px;
+}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
