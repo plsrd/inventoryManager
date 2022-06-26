@@ -9,6 +9,21 @@ block content
         h2(class="card-title") Items
         p Total items: #{totalItems}
 
+        div(class="avatar-group -space-x-3")
+          if itemImages 
+            for item in itemImages 
+              div(class="avatar mask mask-squircle")
+                div(class="w-12")
+                  img(src=`/images/${item.image}`)
+                div
+              div
+          div(class="avatar placeholder")
+            div(class="w-12 bg-neutral-focus text-neutral-content hover:ring ring-primary")
+              span +#{totalItems - itemImages.length}
+            div
+          div
+
+
         div(class="card-actions justify-end")
           a(class="btn btn-outline btn-primary" href='/inventory/items') Manage
 

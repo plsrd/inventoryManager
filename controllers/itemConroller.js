@@ -9,14 +9,19 @@ exports.index = (req, res, next) => {
     {
       totalItems: callback => Item.countDocuments({}, callback),
       totalCategories: callback => Category.countDocuments({}, callback),
+      itemImages: callback =>
+        Item.find({ image: { $exists: true } }, { _id: 0, image: 1 })
+          .limit(5)
+          .exec(callback),
     },
-    (err, { totalItems, totalCategories }) => {
+    (err, { totalItems, totalCategories, itemImages }) => {
       if (err) return next(err);
 
       res.render('index', {
         title: 'Inventory Manager',
         totalCategories,
         totalItems,
+        itemImages,
       });
     }
   );
