@@ -19,6 +19,8 @@ const categoryController = require('../controllers/categoryController');
 
 router.get('/', itemController.index);
 
+router.get('/search', itemController.search_results);
+
 //items routes
 router.get('/items', itemController.item_list);
 

@@ -27,6 +27,50 @@ exports.index = (req, res, next) => {
   );
 };
 
+exports.search_results = (req, res, next) => {
+  async.parallel(
+    {
+      items: callback =>
+        Item.aggregate([
+          {
+            $search: {
+              index: 'items',
+              wildcard: {
+                query: `${req.query.search}*`,
+                path: {
+                  wildcard: '*',
+                },
+                allowAnalyzedField: true,
+              },
+            },
+          },
+        ]).exec(callback),
+      categories: callback =>
+        Category.aggregate([
+          [
+            {
+              $search: {
+                index: 'categories',
+                wildcard: {
+                  query: `${req.query.search}*`,
+                  path: {
+                    wildcard: '*',
+                  },
+                  allowAnalyzedField: true,
+                },
+              },
+            },
+          ],
+        ]).exec(callback),
+    },
+    (err, { items, categories }) => {
+      if (err) return next(err);
+      console.log(items, categories);
+      res.render('search_results', { title: 'Search' });
+    }
+  );
+};
+
 exports.item_list = (req, res, next) => {
   Item.find({})
     .populate('category')
