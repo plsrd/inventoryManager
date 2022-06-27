@@ -9,12 +9,18 @@ block content
       p= category.description
 
       p(class='text-md font-bold mt-5') Items:
-      div(class='flex flex-col pl-5 mb-10')
-        for item in category_items
-          div(class='my-1')
-            a(href=item.url class='font-semibold') #{item.name}
-            p(class='text-xs') #[strong SKU: ] #{item._id}
+      div(class="avatar-group -space-x-3")
+        for item in category_items 
+          if item.image
+            a(class="avatar" href=item.url)
+              div(class="w-12")
+                img(src=`/images/${item.image}`)
+          else  
+            a(class="avatar placeholder" href=item.url)
+              div(class="w-12 bg-neutral-focus text-neutral-content hover:ring ring-primary")
+                span #{item.name.slice(0, 1)}
 
+      
         else 
           p No items in this category
          
