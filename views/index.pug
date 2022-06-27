@@ -3,31 +3,29 @@ extends layout
 block content
 
   div(class='grid grid-cols-2 h-full w-3/5  mx-auto my-10 align-center')
-    div(class="card w-96 h-72 bg-white shadow-xl mx-auto")
+    div(class="card w-96 h-96 bg-white shadow-xl mx-auto transition-transform duration-200 ease-in-out hover:scale-105")
       div(class="card-body")
 
         h2(class="card-title") Items
         p Total items: #{totalItems}
 
-        div(class="avatar-group -space-x-3")
+        div(class="avatar-group -space-x-2 overflow-visible")
           if itemImages 
             for item in itemImages 
-              div(class="avatar")
+              a(class="avatar transition-transform duration-200 ease-in-out hover:scale-125" href=item.url)
                 div(class="w-12")
                   img(src=`/images/${item.image}`)
-                div
-              div
-          div(class="avatar placeholder")
+
+          a(class="avatar placeholder transition-transform duration-200 ease-in-out hover:scale-125" href='/inventory/items')
             div(class="w-12 bg-neutral-focus text-neutral-content hover:ring ring-primary")
               span +#{totalItems - itemImages.length}
-            div
-          div
 
 
-        div(class="card-actions justify-end")
+
+        div(class="card-actions justify-end mt-5")
           a(class="btn btn-outline btn-primary" href='/inventory/items') Manage
 
-    div(class="card w-96 h-72 bg-white shadow-xl mx-auto")
+    div(class="card w-96 h-96 bg-white shadow-xl mx-auto transition-transform duration-200 ease-in-out hover:scale-105")
       div(class="card-body")
 
         h2(class="card-title") Categories
