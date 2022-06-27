@@ -17,7 +17,7 @@ block content
 
           div(class='flex my-1 flex-wrap')
             for category in item.category 
-              a(class="badge badge-info mr-1 mt-1" href=category.url) #{category.name}
+              a(class="badge badge-info mr-2 mt-1" href=category.url) #{category.name}
             if item.in_stock < 5
               div(class="badge badge-warning mt-1") low  stock
          
