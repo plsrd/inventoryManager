@@ -2,43 +2,75 @@ extends layout
 
 block content 
   if results.length > 0
-    div(class='grid grid-cols-3 h-full mx-auto my-10 w-5/6 gap-y-3')
+    div(class='grid grid-cols-1 h-full mx-auto w-5/6 gap-3 my-10 sm:grid-cols-2 md:gap-6 lg:grid-cols-3')
       each result in results 
-        div(class="card w-96 h-96 bg-white shadow-xl mx-auto")
-          div(class="card-body") 
-          
-            a(class="card-title" href=result.url) #{result.name}
-          
-            div(class='flex flex-row')
-              div(class=`badge ${result.category ? 'badge-primary' : 'badge-warning'} mr-2`) #{result.category ? 'Item' : 'Category'}
-              if result.in_stock < 5
-                div(class="badge badge-warning my-auto") low  stock
+        div(class="card w-96 h-96  bg-white shadow-xl mx-auto transition-transform duration-200 ease-in-out hover:scale-105")
+          div(class="card-body flex flex-col") 
+            div(class='flex space-x-4 align-middle mb-3')
+              if result.image 
+                a(class="avatar" href=result.url)
+                  div(class="w-16 h-16 rounded-full")
+                    img(src=`/images/${result.image}`)
+              a(class="card-title" href=result.url) #{result.name}
 
             a(class='text-sm flex-0') #[strong SKU: ] #{result._id}
             p #{result.description}
 
-            if result.image 
-              div(class="avatar")
-                div(class="w-12 rounded-full")
-                  img(src=`/images/${result.image}`)
-                div
-              div
+            div(class='flex my-1 flex-wrap')
+              if result.category
+                for category in result.category 
+                  a(class="badge badge-info mr-2 mt-1" href='/inventory/category/' + category._id) #{category.name}
+              if result.in_stock < 5
+                div(class="badge badge-warning mt-1") low  stock
           
-
             div(class="card-actions")
-              div(class='flex flex-row w-full items-center')
+              div(class='flex flex-row w-full items-center justify-between')
 
-                a(class='h-full flex-0 btn btn-ghost btn-circle p-0 m-0' href=`/inventory/${result.category ? 'item' : 'category'}/${result._id}`)
+                a(class="btn btn-square btn-ghost btn-circle" href=`/inventory/${result.category ? 'item' : 'category'}/${result._id}`)
+                  svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current")
+                    path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z")
 
+                a(class='h-full flex-0 btn btn-ghost btn-circle p-0 m-0' href=`/inventory/${result.category ? 'item' : 'category'}/${result._id}/update`)
                   svg(xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round")
                     path(stroke="none" d="M0 0h24v24H0z" fill="none")
                     path(d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4")
                     line(x1="13.5" y1="6.5" x2="17.5" y2="10.5")
 
-                div(class='py-1 h-full flex-1 flex justify-end flex-wrap-reverse ')
-                  if result.category
-                    for category in result.category 
-                      a(class="badge badge-info m-1" href=`/inventory/category/${category._id}`) #{category.name}
+        //- div(class="card w-96 h-96 bg-white shadow-xl mx-auto")
+        //-   div(class="card-body") 
+          
+        //-     a(class="card-title" href=result.url) #{result.name}
+          
+        //-     div(class='flex flex-row')
+        //-       div(class=`badge ${result.category ? 'badge-primary' : 'badge-warning'} mr-2`) #{result.category ? 'Item' : 'Category'}
+        //-       if result.in_stock < 5
+        //-         div(class="badge badge-warning my-auto") low  stock
+
+        //-     a(class='text-sm flex-0') #[strong SKU: ] #{result._id}
+        //-     p #{result.description}
+
+        //-     if result.image 
+        //-       div(class="avatar")
+        //-         div(class="w-12 rounded-full")
+        //-           img(src=`/images/${result.image}`)
+        //-         div
+        //-       div
+          
+
+        //-     div(class="card-actions")
+        //-       div(class='flex flex-row w-full items-center')
+
+        //-         a(class='h-full flex-0 btn btn-ghost btn-circle p-0 m-0' href=`/inventory/${result.category ? 'item' : 'category'}/${result._id}`)
+
+        //-           svg(xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round")
+        //-             path(stroke="none" d="M0 0h24v24H0z" fill="none")
+        //-             path(d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4")
+        //-             line(x1="13.5" y1="6.5" x2="17.5" y2="10.5")
+
+        //-         div(class='py-1 h-full flex-1 flex justify-end flex-wrap-reverse ')
+        //-           if result.category
+        //-             for category in result.category 
+        //-               a(class="badge badge-info m-1" href=`/inventory/category/${category._id}`) #{category.name}
                       
   else 
     div(class="alert alert-warning shadow-lg w-11/12 mx-auto mt-10")
