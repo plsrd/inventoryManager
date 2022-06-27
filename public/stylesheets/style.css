@@ -2131,6 +2131,9 @@ body[dir="rtl"] .checkbox:checked,
 .mt-5 {
   margin-top: 1.25rem;
 }
+.mr-2 {
+  margin-right: 0.5rem;
+}
 .ml-5 {
   margin-left: 1.25rem;
 }
@@ -2145,9 +2148,6 @@ body[dir="rtl"] .checkbox:checked,
 }
 .mr-3 {
   margin-right: 0.75rem;
-}
-.mr-2 {
-  margin-right: 0.5rem;
 }
 .mr-4 {
   margin-right: 1rem;
